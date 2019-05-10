@@ -6,12 +6,16 @@ B<t.pl> - Transpose a matrix in given file.
 
 =head1 SYNOPSIS
 
- USAGE: t.pl -i /path/to/input_matrix_file
-        [-o /path/to/output_file
+ USAGE: cat file | t.pl - > output
+		
+		or
+		
+	t.pl -i /path/to/input_matrix_file
+        -o /path/to/output_file
         -sep [default|c|s], default: tab
         -ow
         -log /path/to/log_file
-        -help|h]
+        -help|h
 
 =head1 OPTIONS
 
