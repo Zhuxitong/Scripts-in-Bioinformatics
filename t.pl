@@ -80,8 +80,10 @@ if (@ARGV==0){
     pod2usage(-exitval=>0, -verbose=>1);
 }
 
+my $stdin = '';
 my %options = ();
 GetOptions(\%options,
+		'' => \$stdin,
         'i=s',
         'o=s',
         'sep=s',
@@ -127,8 +129,12 @@ if (defined $options{sep}){
 
 
 ## CODE HERE
-
-open IN, $options{i} or die $!;
+if ($stdin){
+	open IN, $stdin or die $!;
+}
+elsif ( defined $options{i} ){
+	open IN, $options{i} or die $!;
+}
 my @m;
 my $r = 0;
 my $t;
@@ -149,8 +155,8 @@ _log("Reading input file finished!");
 for my $x (0..$t - 1){
   for my $y  (0..$r - 1){
 		if ($y != $r - 1){
-#                  print $m[$y][$x],"$separator";
-                  print $m[$y][$x],"\t";
+                  print $m[$y][$x],"$separator";
+#                  print $m[$y][$x],"\t";
 		}
 		else{
 			print $m[$y][$x];
@@ -178,17 +184,17 @@ sub check_parameters {
 #   print Dumper(\$options);
 
     # make sure required arguments were passed
-    my @required = qw( i );
-    for my $option ( @required ) {
-        if ( !defined $options{$option} ) {
-            die "--$option is a required option";
-        }
-    }
+#    my @required = qw( i );
+#    for my $option ( @required ) {
+#        if ( !defined $options{$option} ) {
+#            die "--$option is a required option";
+#        }
+#    }
     
     #check input file
-    if (! -e $options{i}){
-        die "\n\tError! Input file $options{i} doesn't exist, please check!";
-    }
+#    if (! -e $options{i}){
+#        die "\n\tError! Input file $options{i} doesn't exist, please check!";
+#    }
     
     #check output file
     if (defined $options{o} && -e $options{o} && !$options{ow}){
