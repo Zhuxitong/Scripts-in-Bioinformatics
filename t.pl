@@ -6,7 +6,7 @@ B<t.pl> - Transpose a matrix in given file.
 
 =head1 SYNOPSIS
 
- USAGE: cat file | t.pl - > output
+ USAGE: cat file | t.pl -i - > output
 		
 		or
 		
@@ -20,7 +20,7 @@ B<t.pl> - Transpose a matrix in given file.
 =head1 OPTIONS
 
  -i input_file
-    Input matrix file. Element can be separated by tab, space or comma.
+    Input matrix file. Element can be separated by tab, space or comma. Can from stdin: -i -
 
  -o output_file
     Output file, not required, default to STDOUT.
